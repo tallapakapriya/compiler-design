@@ -1,0 +1,77 @@
+cout<<"\n****************************************************** ";
+            cout<<endl<<" ";
+            for(int w=0;w<d;w++)
+            cout<<" "<<terminal[w];
+            cout<<endl;
+            for(p=0;p<f;p++)
+            {
+                        cout<<nonterm[p]<<" ";
+                        for(int q=0;q<d;q++)
+                        {
+                                    cout<<a[p][q]<<" ";
+                        }
+                        cout<<endl;
+            }
+            cout<<endl<<endl;
+            for(i=0;i<f;i++)
+            {
+               cout<<"Leading("<<nonterm[i]<<")="<<" "<<"{";
+               for(int j=0;j<d;j++)
+               {
+                 if(a[i][j]==1)
+                  cout<<terminal[j]<<",";
+               }
+               cout<<"}"<<endl;
+            }
+            getch();
+ }
+
+void  install(char x,char y)
+{
+  int g;
+  xn=pon(x);
+  xt=pot(y);
+  g=checkstatus(xn,xt);
+  if(g==0)
+   return;
+  else if(g==1)
+    {
+      top++;
+      st[top].nt=x;
+      st[top].t=y;
+      a[xn][xt]=1;
+    }
+}
+
+void pop()
+{
+  X=st[top].nt;
+  Y=st[top].t;
+  top--;
+}
+
+int pon(char u)
+{
+  for(int x=0;x<f;x++)
+  {
+    if(u==nonterm[x])
+            return x;
+  }
+}
+
+int pot(char v)
+{
+  for(int x=0;x<d;x++)
+  {
+            if(v==terminal[x])
+                        return x;
+  }
+}
+
+int checkstatus(int xn,int xt)
+{
+   if(a[xn][xt]==1)
+   return 0;
+   else
+   return 1;
+}
